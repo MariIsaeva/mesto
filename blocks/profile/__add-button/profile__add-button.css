@@ -2,7 +2,7 @@
     box-sizing: border-box;
     width: 150px;
     height: 50px;
-    background-image: url(../../../images/Vector-plus.svg);
+    background-image: url('../../../images/Vector-plus.svg');
     background-size: 22px;
     border: 2px solid #FFFFFF;
     border-radius: 2px;
