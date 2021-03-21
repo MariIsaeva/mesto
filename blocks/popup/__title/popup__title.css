@@ -1,5 +1,5 @@
-.popap__form-title {
-    font-family: Inter;
+.popup__title {
+    font-family: 'Inter';
     font-style: normal;
     font-weight: 900;
     font-size: 24px;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (max-width: 767px) {
-    .popap__form-title {
+    .popup__title {
         font-size: 18px;
         line-height: 22px;
     }
