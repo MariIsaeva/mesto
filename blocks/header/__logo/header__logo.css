@@ -1,0 +1,21 @@
+.header__logo {
+    background-image: url('../../../images/logo.svg');
+    background-size: contain;
+    object-fit: cover;
+    min-width: 142px;
+    min-height: 33px;
+    margin: 0px;
+}
+
+@media screen and (max-width: 767px) {
+    .header__logo {
+        min-width: 104px;
+        min-height: 24px;
+        margin-left: 27px;
+    }
+}
+
+.header__logo:hover {
+    opacity: 0.6;
+    transition: 0.35s;
+}

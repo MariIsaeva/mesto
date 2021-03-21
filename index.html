@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+  <title>Mesto Russia</title>
+  <link rel="stylesheet" href="./pages/index.css">
+</head>
+<body class="page">
+  <div class="popup">
+    <div class="popup__conteiner">
+      <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
+      <form class="popup__edit-form" name="editForm" novalidate>
+        <h2 class="popap__form-title">Редактировать профиль</h2>
+        <input type="text" name="inputProfileName" placeholder="Имя" class="popup__input popup__input_el_name">
+        <input type="text" name="inputProfileJob" placeholder="О себе" class="popup__input popup__input_el_job">
+        <button type="submit" class="popup__submit-button">Сохранить</button>
+      </form>
+    </div>
+  </div>
+ 
+ <div class="page__conteiner">
+   <header class="header section section_narrow page__header">
+     <a href="#" target="_self" class="header__logo header__logo_theme_white"></a>
+   </header>
+
+  <main class="content page__content">
+     <section class="profile section section_narrow">
+       <img src="images/Avatar.jpg" alt="Аватарка" class="profile__photo">
+       <div class="profile__info">
+         <div class="profile__title">
+           <h1 class="profile__name">Жак-Ив Кусто</h1>
+           <button type="button" class="profile__edit-button" aria-label="Редактировать профиль"></button>
+         </div>  
+         <p class="profile__job">Исследователь океана</p>
+       </div>
+       <button type="button" class="profile__add-button" aria-label="Добавить"></button> 
+     </section>
+
+    <section class="plase section section_narrow">
+       <ul class="cards">
+         <li class="card__item">
+           <img src="images/kirill-pershin-1088404-unsplash.jpg" alt="Фото Карачаевск" class="card__image">
+           <div class="card__text">
+             <h2 class="card__title">Карачаевск</h2>
+             <button type="button" class="button card__like-button" aria-label="like"></button>
+           </div>
+         </li>
+         <li class="card__item">
+         <img src="images/kirill-pershin-1404681-unsplash.jpg" alt="Фото Гора Эльбрус" class="card__image">
+          <div class="card__text">
+            <h2 class="card__title">Гора Эльбрус</h2>
+            <button type="button" class="button card__like-button" aria-label="like"></button>
+          </div>
+        </li>
+        <li class="card__item">
+          <img src="images/kirill-pershin-1556355-unsplash.jpg" alt="Фото Домбай" class="card__image">
+          <div class="card__text">
+            <h2 class="card__title">Домбай</h2>
+            <button type="button" class="button card__like-button" aria-label="like"></button>
+          </div>
+        </li> 
+        <li class="card__item">
+          <img src="images/kirill-pershin-1404681-unsplash.jpg" alt="Фото Гора Эльбрус" class="card__image">
+          <div class="card__text">
+            <h2 class="card__title">Гора Эльбрус</h2>
+            <button type="button" class="button card__like-button" aria-label="like"></button>
+          </div>
+        </li>
+        <li class="card__item">
+          <img src="images/kirill-pershin-1556355-unsplash.jpg" alt="Фото Домбай" class="card__image">
+          <div class="card__text">
+            <h2 class="card__title">Домбай</h2>
+            <button type="button" class="button card__like-button" aria-label="like"></button>
+          </div>
+        </li> 
+        <li class="card__item">
+          <img src="images/kirill-pershin-1088404-unsplash.jpg" alt="Фото Карачаево-Черкеск" class="card__image">
+          <div class="card__text">
+            <h2 class="card__title">Карачаево-Черкеск</h2>
+            <button type="button" class="button card__like-button" aria-label="like"></button>
+          </div>
+        </li>      
+       </ul>
+     </section>
+   </main>
+
+   <footer class="footer section section_narrow page__footer">
+     <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
+   </footer> 
+  </div>
+ <script src="scripts/index.js"></script>
+</body>
+</html>
