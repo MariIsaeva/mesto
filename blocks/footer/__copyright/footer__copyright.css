@@ -4,13 +4,14 @@
     font-size: 18px;
     line-height: 22px;
     color: rgba(84, 84, 84, 1);
-    margin: 66px 0px 0px;
+    margin-top: 66px;
+   
 }
 
 @media screen and (max-width: 767px) {
     .footer__copyright {
         font-size: 14px;
         line-height: 17px;
-        margin: 48px 0px 0px;
+        margin-top: 48px;
     }
 }

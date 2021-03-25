@@ -2,19 +2,26 @@
     display: flex;
     align-items: center;
     margin: 40px auto 50px;
-    
+    max-width: 880px;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 1279px) {
+    .profile {
+        max-width: calc(100% - 80px*2)
+    }
 }
 
 @media screen and (max-width: 1024px) {
     .profile {
-      flex-wrap: wrap;
-      
+        max-width: calc(100% - 40px*2)
     }
 }
 
 @media screen and (max-width: 767px) {
     .profile {
-        min-width: 0px;
+        max-width: calc(100% - 19px*2);
         flex-direction: column;
         justify-content: center;
         margin: 42px auto 36px;
