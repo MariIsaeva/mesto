@@ -1,17 +1,17 @@
 .page__header {
     box-sizing: border-box;
-    max-width: calc(100% - 200px*2)
+    max-width: calc(100% - 200px*2);
 }
 
 @media screen and (max-width: 1279px) {
     .page__header {
-       max-width: calc(100% - 80px*2)
+       max-width: calc(100% - 80px*2);
     }
 }
 
 @media screen and (max-width: 1024px) {
     .page__header {
-        max-width: calc(100% - 40px*2)
+        max-width: calc(100% - 40px*2);
     }
 }
 

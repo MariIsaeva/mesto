@@ -9,13 +9,13 @@
 
 @media screen and (max-width: 1279px) {
     .profile {
-        max-width: calc(100% - 80px*2)
+        max-width: calc(100% - 80px*2);
     }
 }
 
 @media screen and (max-width: 1024px) {
     .profile {
-        max-width: calc(100% - 40px*2)
+        max-width: calc(100% - 40px*2);
     }
 }
 
