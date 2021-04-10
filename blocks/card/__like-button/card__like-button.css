@@ -3,13 +3,14 @@
     background-color: transparent;
     background-position: center;
     background-repeat: no-repeat;
-    box-sizing: border-box;
+    box-sizing: border-box ;
     width: 22px;
     height: 19px;
     border: none;
     outline: none;
     cursor: pointer;
     padding: 0px;
+    flex: none;
 }   
 
 .card__like-button:hover {
@@ -18,8 +19,7 @@
 }
 
 .card__like-button:active {
-    background-image: url(../../../images/Union-aktive.svg);
-   
+    outline: none;
 }
 
 @media screen and (max-width: 700px) {
