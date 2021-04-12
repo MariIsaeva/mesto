@@ -48,7 +48,7 @@ function formSubmitHandlerAdd(evt) {
   evt.preventDefault();
   placeValue = popupInputPlaceAdd.value;
   placeLink = popupInputLinkAdd.value;
-  plaseElement = createCard({ name: placeValue, link: placeLink });
+  plaseElement = addCartInList({ name: placeValue, link: placeLink });
   popupInputPlaceAdd.value = '';
   popupInputLinkAdd.value = '';
   closePopup(popupTypeAdd);
@@ -72,8 +72,8 @@ function handlePreviewImage(link, name) {
 const cardItemTemplate = document.querySelector('.card-item-template').content.querySelector('.card__item');
 const cardItemlist = document.querySelector('.card__list');
 
-initialCards.forEach(item => {
-  createCard(item);
+initialCards.forEach(data => {
+  addCartInList(data);
 });
 
 //добавление карточки 
@@ -97,7 +97,6 @@ function createCard(data) {
   cardLikeIcon.addEventListener('click', handleLikeIcon);
   cardItemImage.addEventListener('click', () => handlePreviewImage(data.link, data.name));
   return cardItem;
-  //cardItemlist.prepend(cardItem);
 }
 
 profileEditBtn.addEventListener('click', openPopupTypeEdit);
