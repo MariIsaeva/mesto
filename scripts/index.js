@@ -76,8 +76,7 @@ initialCards.forEach(data => {
   addCartInList(data);
 });
 
-//добавление карточки 
-  function addCartInList(data) { 
+function addCartInList(data) { 
   const cardItem = createCard(data); 
   cardItemlist.prepend(cardItem);
 } 
