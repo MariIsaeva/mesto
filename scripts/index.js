@@ -62,7 +62,7 @@ function handleLikeIcon(evt) {
   evt.target.classList.toggle('card__like-button_active');
 }
 
-function handllePreviewImage(link, name) {
+function handlePreviewImage(link, name) {
   popupImgPhoto.src = link;
   popupImgPhoto.alt = name;
   popupImgTitle.textContent = name;
@@ -71,6 +71,16 @@ function handllePreviewImage(link, name) {
 
 const cardItemTemplate = document.querySelector('.card-item-template').content.querySelector('.card__item');
 const cardItemlist = document.querySelector('.card__list');
+
+initialCards.forEach(item => {
+  createCard(item);
+});
+
+//добавление карточки 
+  function addCartInList(data) { 
+  const cardItem = createCard(data); 
+  cardItemlist.prepend(cardItem);
+} 
 
 function createCard(data) {
   const cardItem = cardItemTemplate.cloneNode(true);
@@ -85,24 +95,10 @@ function createCard(data) {
   
   cardDeleteButton.addEventListener('click', handleDeleteCard);
   cardLikeIcon.addEventListener('click', handleLikeIcon);
-  cardItemImage.addEventListener('click', () => handllePreviewImage(data.link, data.name));
-  //return cardItem;
-  cardItemlist.prepend(cardItem);
+  cardItemImage.addEventListener('click', () => handlePreviewImage(data.link, data.name));
+  return cardItem;
+  //cardItemlist.prepend(cardItem);
 }
-// у меня так и не получилось разделить функции карточки, пока до меня не доходит,
-// хотелось бы знать в чем у меня еще проблемы в коде
-
-// function renderCard(data, wrap) {
-//   wrap.prepend(createCard(data));
-//   cardItemlist.prepend(cardItem);
-//  }
-//  initialCards.forEach((data) => {
-//   renderCard(data, placesWrap)
-//  });
-
-initialCards.forEach(data => {
-   createCard(data);
-});
 
 profileEditBtn.addEventListener('click', openPopupTypeEdit);
 profileAddBtn.addEventListener('click', () => openPopup(popupTypeAdd)); 
