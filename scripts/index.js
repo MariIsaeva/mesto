@@ -46,13 +46,11 @@ function closePopup(popup) {
 
 function formSubmitHandlerAdd(evt) {
   evt.preventDefault();
-  placeValue = popupInputPlaceAdd.value;
-  placeLink = popupInputLinkAdd.value;
-  plaseElement = addCartInList({ name: placeValue, link: placeLink });
+  addCartInList({ name: popupInputPlaceAdd.value, link: popupInputLinkAdd.value });
   popupInputPlaceAdd.value = '';
   popupInputLinkAdd.value = '';
   closePopup(popupTypeAdd);
-} 
+}
 
 function handleDeleteCard(evt) {
   evt.target.closest('.card__item').remove();
