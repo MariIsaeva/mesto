@@ -44,7 +44,7 @@ function setEventListeners(formElement, formObj) {
   formElement.addEventListener("submit", handleFormSubmit);
   
   const inputList = Array.from(formElement.querySelectorAll(formObj.inputSelector));
-  const buttonElement = formElement.querySelector(submitButtonSelector);
+  const buttonElement = formElement.querySelector(formObj.submitButtonSelector);
 
   const inputListIterator = (inputElement) => {
     const handleInput = () => {
@@ -58,7 +58,7 @@ function setEventListeners(formElement, formObj) {
   toggleButtonState(inputList, buttonElement, formObj.inactiveButtonClass);
 };
 
-const enableValidation = () => {
+function enableValidation(formObj) {
   const formElements = document.querySelectorAll(formObj.formSelector);
   const formList = Array.from(formElements);
   formList.forEach((formElement) => {
@@ -75,5 +75,5 @@ const formObj = {
   errorClass: 'popup__form-error_visible'
 }
 
-enableValidation(); 
+enableValidation(formObj); 
  
