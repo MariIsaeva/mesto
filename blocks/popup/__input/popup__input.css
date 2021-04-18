@@ -26,5 +26,5 @@
 }
 
 .popup__input:focus {
-    border-bottom: 1px solid rgb(109, 236, 109);
+    border-bottom: 1px solid rgb(0, 0, 0);
 }

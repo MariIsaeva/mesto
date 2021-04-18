@@ -1,6 +1,7 @@
 const popup = document.querySelector('.popup');
 const popupTypeEdit = document.querySelector('.popup_type_edit');
 const popupTypeAdd = document.querySelector('.popup_type_add');
+const popupAddForm = popupTypeAdd.querySelector('.popup-add-form');
 
 const popupInputName = popupTypeEdit.querySelector('.popup__input_el_name');
 const popupInputJob = popupTypeEdit.querySelector('.popup__input_el_job');
@@ -23,6 +24,25 @@ const profileAddBtn = profile.querySelector('.profile__add-button');
 const profileName = profile.querySelector('.profile__name');
 const profileJob = profile.querySelector('.profile__job');
 
+const popups = Array.from(document.querySelectorAll('.popup'));
+
+function closeOverlayPopups (popups) {
+  popups.forEach(popup => {
+    popup.addEventListener('click', function (evt) {
+      if (evt.target.classList.contains('popup_opened')) {
+        closePopup(popup)
+      }
+    })
+  }); 
+}
+
+function closePopupEsc(evt) {
+  const popup = document.querySelector('.popup_opened');
+  if(evt.key === 'Escape') {
+    closePopup(popup);
+  }
+}
+
 function openPopupTypeEdit() { 
   popupInputName.value = profileName.textContent;
   popupInputJob.value = profileJob.textContent;
@@ -38,17 +58,18 @@ function formSubmitHandlerEdit(evt) {
 
 function openPopup(popup) { 
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupEsc);
 }
 
 function closePopup(popup) { 
   popup.classList.remove('popup_opened');
+  document.addEventListener('keydown', closePopupEsc);
  }
 
 function formSubmitHandlerAdd(evt) {
   evt.preventDefault();
   addCartInList({ name: popupInputPlaceAdd.value, link: popupInputLinkAdd.value });
-  popupInputPlaceAdd.value = '';
-  popupInputLinkAdd.value = '';
+  popupAddForm.reset();
   closePopup(popupTypeAdd);
 }
 
@@ -95,6 +116,8 @@ function createCard(data) {
   cardItemImage.addEventListener('click', () => handlePreviewImage(data.link, data.name));
   return cardItem;
 }
+
+closeOverlayPopups(popups);
 
 profileEditBtn.addEventListener('click', openPopupTypeEdit);
 profileAddBtn.addEventListener('click', () => openPopup(popupTypeAdd)); 
