@@ -1,8 +1,8 @@
-const showInputError = (formElement, inputElement, formObj, errorMessage) => {
+const showInputError = (formElement, inputElement, formObj) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.add(formObj.inputErrorClass);
   errorElement.classList.add(formObj.errorClass);
-  errorElement.textContent = errorMessage;
+  errorElement.textContent = inputElement.validationMessage;
 };
 
 const hideInputError = (formElement, inputElement, formObj) => {
@@ -12,11 +12,11 @@ const hideInputError = (formElement, inputElement, formObj) => {
   errorElement.textContent = '';
 };
 
-const checkInputValidity = (formElement, inputElement, formObj, errorMessage) => {
+const checkInputValidity = (formElement, inputElement, formObj, errorElement) => {
   const isInputNotValid = !inputElement.validity.valid;
 
   if (isInputNotValid) {
-    showInputError(formElement, inputElement, formObj, errorMessage);
+    showInputError(formElement, inputElement, formObj, errorElement);
   } else {
     hideInputError(formElement, inputElement, formObj);
   }
@@ -27,10 +27,11 @@ const desactivateButton = (buttonElement) => {
   buttonElement.classList.add(formObj.inactiveButtonClass);
 }
 
-const toggleButtonState = (inputList, buttonElement, formObj) => {
+const toggleButtonState = (inputList, buttonElement) => {
+
   const findAtLeastOneNotValid = (inputElement) => !inputElement.validity.valid;
   const hasNotValidInput = inputList.some(findAtLeastOneNotValid);
-   
+    
   if (hasNotValidInput) {
     desactivateButton(buttonElement);
   } else {
