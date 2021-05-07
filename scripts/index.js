@@ -14,9 +14,6 @@ const popupInputPlaceAdd = popupTypeAdd.querySelector('.popup__input_el_place');
 const popupInputLinkAdd = popupTypeAdd.querySelector('.popup__input_el_link');
 
 const popupTypeImage = document.querySelector('.popup_type_image');
-const popupImgPhoto = popupTypeImage.querySelector('.popup-image__photo');
-const popupImgTitle = popupTypeImage.querySelector('.popup-image__title');
-
 const closeImageModalButton = popupTypeImage.querySelector('.popup__close-button');
 const closeEditModalButton = popupTypeEdit.querySelector('.popup__close-button');
 const closeAddModalButton = popupTypeAdd.querySelector('.popup__close-button');
@@ -62,11 +59,13 @@ function formSubmitHandlerEdit(evt) {
   closePopup(popup);
 }
 
-function openPopup(popup) { 
+//открыть попап
+export function openPopup(popup) { 
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupEsc);
 }
 
+//закрыть попап
 function closePopup(popup) { 
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupEsc);
@@ -79,20 +78,15 @@ function formSubmitHandlerAdd(evt) {
   closePopup(popupTypeAdd);
 }
 
-function handlePreviewImage(link, name) {
-  popupImgPhoto.src = link;
-  popupImgPhoto.alt = name;
-  popupImgTitle.textContent = name;
-  openPopup(popupTypeImage);
-};
-
-initialCards.forEach(data => {
-  addCartInList(data);
+initialCards.forEach((item) => {
+  //создаем экземпляр карточки
+  addCartInList(item);
 });
 
-function addCartInList(cardName, cardLink) { 
-  const newCard = new Card(cardName, cardLink, '.card-item-template');
+function addCartInList(data) { 
+  const newCard = new Card(data, '.card-item-template');
   const cardItem = newCard.generateCard()
+  //добавляем в ДОМ
   cardItemlist.prepend(cardItem);
 }
 
