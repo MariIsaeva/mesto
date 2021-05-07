@@ -32,7 +32,6 @@ const popups = Array.from(document.querySelectorAll('.popup'));
 
 const cardItemlist = document.querySelector('.card__list');
 
-//закрытие модалки по нажатию вне модалки
 function closeOverlayPopups (popups) {
   popups.forEach(popup => {
     popup.addEventListener('click', function (evt) {
@@ -43,7 +42,6 @@ function closeOverlayPopups (popups) {
   }); 
 }
 
-//закрытие модалки по нажатию на Esc
 function closePopupEsc(evt) {
   if(evt.key === 'Escape') {
     const popup = document.querySelector('.popup_opened');
