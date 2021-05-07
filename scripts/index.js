@@ -61,7 +61,6 @@ function formSubmitHandlerEdit(evt) {
   evt.preventDefault();
   profileName.textContent = popupInputName.value;
   profileJob.textContent = popupInputJob.value;
-  validatedEditForm.checkValidation();
   closePopup(popup);
 }
 
@@ -79,7 +78,6 @@ function formSubmitHandlerAdd(evt) {
   evt.preventDefault();
   addCartInList({ name: popupInputPlaceAdd.value, link: popupInputLinkAdd.value });
   popupAddForm.reset();
-  validatedAddForm.checkValidation();
   closePopup(popupTypeAdd);
 }
 
@@ -112,5 +110,5 @@ closeImageModalButton.addEventListener('click', () => closePopup(popupTypeImage)
 popupTypeEdit.addEventListener('submit', formSubmitHandlerEdit);
 popupTypeAdd.addEventListener('submit', formSubmitHandlerAdd);
 
-const validatedEditForm = validateForm(popupTypeEdit);
-const validatedAddForm = validateForm(popupTypeAdd);
+validateForm(popupTypeEdit);
+validateForm(popupTypeAdd);
