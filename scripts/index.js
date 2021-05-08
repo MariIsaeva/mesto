@@ -13,7 +13,6 @@ const popupInputJob = popupTypeEdit.querySelector('.popup__input_el_job');
 const popupInputPlaceAdd = popupTypeAdd.querySelector('.popup__input_el_place');
 const popupInputLinkAdd = popupTypeAdd.querySelector('.popup__input_el_link');
 
-const popupTypeImage = document.querySelector('.popup_type_image');
 const closeImageModalButton = popupTypeImage.querySelector('.popup__close-button');
 const closeEditModalButton = popupTypeEdit.querySelector('.popup__close-button');
 const closeAddModalButton = popupTypeAdd.querySelector('.popup__close-button');
@@ -26,6 +25,10 @@ const profileName = profile.querySelector('.profile__name');
 const profileJob = profile.querySelector('.profile__job');
 
 const popups = Array.from(document.querySelectorAll('.popup'));
+
+const popupTypeImage = document.querySelector('.popup_type_image');
+const popupImgPhoto = popupTypeImage.querySelector('.popup-image__photo');
+const popupImgTitle = popupTypeImage.querySelector('.popup-image__title');
 
 const cardItemlist = document.querySelector('.card__list');
 
@@ -60,7 +63,7 @@ function formSubmitHandlerEdit(evt) {
 }
 
 //открыть попап
-export function openPopup(popup) { 
+  function openPopup(popup) { 
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupEsc);
 }
@@ -78,17 +81,34 @@ function formSubmitHandlerAdd(evt) {
   closePopup(popupTypeAdd);
 }
 
+//открыть карточку с фото
+function handlePreviewImage(link, name) {
+    popupImgPhoto.src = link;
+    popupImgPhoto.alt = name;
+    popupImgTitle.textContent = name;
+    openPopup(popupTypeImage);
+};
+
 initialCards.forEach((item) => {
-  //создаем экземпляр карточки
   addCartInList(item);
 });
 
 function addCartInList(data) { 
-  const newCard = new Card(data, '.card-item-template');
-  const cardItem = newCard.generateCard()
+  const cardItem = createCard(data) //создаем карточку
   //добавляем в ДОМ
   cardItemlist.prepend(cardItem);
 }
+
+function createCard(data) {
+  const newCard = new Card(data, handlePreviewImage, '.card-item-template');
+  newCard.generateCard()
+}
+
+// function addCartInList(data) { 
+//   const newCard = new Card(data, '.card-item-template');
+//   const cardItem = newCard.generateCard()
+//   cardItemlist.prepend(cardItem);
+// }
 
 closeOverlayPopups(popups);
 
