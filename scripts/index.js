@@ -93,14 +93,15 @@ function addCartInList(data) {
 }
 
 function createCard(data) {
-  const newCard = new Card(data, '.card-item-template');
+  const templateSelector = '.card-item-template';
+  const newCard = new Card(data, templateSelector, handlePreviewImage);
   const newCreateCard = newCard.generateCard();
   return newCreateCard;
 }
 
 function formSubmitHandlerAdd(evt) {
   evt.preventDefault();
-  addCartInList({ name: popupInputPlaceAdd.value, link: popupInputLinkAdd.value });
+  addCartInList({ name: popupInputPlaceAdd.value, link: popupInputLinkAdd.value }, handlePreviewImage);
   popupAddForm.reset();
   closePopup(popupTypeAdd);
 }
