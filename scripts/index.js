@@ -13,6 +13,10 @@ const popupInputJob = popupTypeEdit.querySelector('.popup__input_el_job');
 const popupInputPlaceAdd = popupTypeAdd.querySelector('.popup__input_el_place');
 const popupInputLinkAdd = popupTypeAdd.querySelector('.popup__input_el_link');
 
+const popupTypeImage = document.querySelector('.popup_type_image');
+const popupImgPhoto = popupTypeImage.querySelector('.popup-image__photo');
+const popupImgTitle = popupTypeImage.querySelector('.popup-image__title');
+
 const closeImageModalButton = popupTypeImage.querySelector('.popup__close-button');
 const closeEditModalButton = popupTypeEdit.querySelector('.popup__close-button');
 const closeAddModalButton = popupTypeAdd.querySelector('.popup__close-button');
@@ -25,10 +29,6 @@ const profileName = profile.querySelector('.profile__name');
 const profileJob = profile.querySelector('.profile__job');
 
 const popups = Array.from(document.querySelectorAll('.popup'));
-
-const popupTypeImage = document.querySelector('.popup_type_image');
-const popupImgPhoto = popupTypeImage.querySelector('.popup-image__photo');
-const popupImgTitle = popupTypeImage.querySelector('.popup-image__title');
 
 const cardItemlist = document.querySelector('.card__list');
 
@@ -74,13 +74,6 @@ function closePopup(popup) {
   document.removeEventListener('keydown', closePopupEsc);
  }
 
-function formSubmitHandlerAdd(evt) {
-  evt.preventDefault();
-  addCartInList({ name: popupInputPlaceAdd.value, link: popupInputLinkAdd.value });
-  popupAddForm.reset();
-  closePopup(popupTypeAdd);
-}
-
 //открыть карточку с фото
 function handlePreviewImage(link, name) {
     popupImgPhoto.src = link;
@@ -94,14 +87,24 @@ initialCards.forEach((item) => {
 });
 
 function addCartInList(data) { 
-  const cardItem = createCard(data) //создаем карточку
+  const cardItem = createCard(data) 
   //добавляем в ДОМ
   cardItemlist.prepend(cardItem);
 }
 
 function createCard(data) {
-  const newCard = new Card(data, handlePreviewImage, '.card-item-template');
+  const newCard = new Card(data,'.card-item-template');
   newCard.generateCard()
+}
+
+function formSubmitHandlerAdd(evt) {
+  evt.preventDefault();
+  addCartInList(createCard({
+    name: popupInputPlaceAdd.value,
+    link: popupInputLinkAdd.value 
+  }));
+  popupAddForm.reset();
+  closePopup(popupTypeAdd);
 }
 
 // function addCartInList(data) { 
