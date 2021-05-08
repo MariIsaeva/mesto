@@ -87,31 +87,23 @@ initialCards.forEach((item) => {
 });
 
 function addCartInList(data) { 
-  const cardItem = createCard(data) 
+  const cardItem = createCard(data); 
   //добавляем в ДОМ
   cardItemlist.prepend(cardItem);
 }
 
 function createCard(data) {
-  const newCard = new Card(data,'.card-item-template');
-  newCard.generateCard()
+  const newCard = new Card(data, '.card-item-template');
+  const newCreateCard = newCard.generateCard();
+  return newCreateCard;
 }
 
 function formSubmitHandlerAdd(evt) {
   evt.preventDefault();
-  addCartInList(createCard({
-    name: popupInputPlaceAdd.value,
-    link: popupInputLinkAdd.value 
-  }));
+  addCartInList({ name: popupInputPlaceAdd.value, link: popupInputLinkAdd.value });
   popupAddForm.reset();
   closePopup(popupTypeAdd);
 }
-
-// function addCartInList(data) { 
-//   const newCard = new Card(data, '.card-item-template');
-//   const cardItem = newCard.generateCard()
-//   cardItemlist.prepend(cardItem);
-// }
 
 closeOverlayPopups(popups);
 
