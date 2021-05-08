@@ -101,7 +101,7 @@ function createCard(data) {
 
 function formSubmitHandlerAdd(evt) {
   evt.preventDefault();
-  addCartInList({ name: popupInputPlaceAdd.value, link: popupInputLinkAdd.value }, handlePreviewImage);
+  addCartInList({ name: popupInputPlaceAdd.value, link: popupInputLinkAdd.value }, handlePreviewImage, '.card-item-template');
   popupAddForm.reset();
   closePopup(popupTypeAdd);
 }
