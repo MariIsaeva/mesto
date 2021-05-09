@@ -1,5 +1,5 @@
 import {initialCards} from './initial-сards.js';
-import {validateForm} from './FormValidator.js';
+import {FormValidator} from './FormValidator.js';
 import {Card} from './Card.js';
 
 const popup = document.querySelector('.popup');
@@ -32,6 +32,7 @@ const popups = Array.from(document.querySelectorAll('.popup'));
 
 const cardItemlist = document.querySelector('.card__list');
 
+//закрытие попапа по нажатию Esc
 function closeOverlayPopups (popups) {
   popups.forEach(popup => {
     popup.addEventListener('click', function (evt) {
@@ -42,6 +43,7 @@ function closeOverlayPopups (popups) {
   }); 
 }
 
+//закрытие попапа по нажатию на пустое место
 function closePopupEsc(evt) {
   if(evt.key === 'Escape') {
     const popup = document.querySelector('.popup_opened');
@@ -49,12 +51,15 @@ function closePopupEsc(evt) {
   }
 }
 
+//открытие попапа с редактированием профиля
 function openPopupTypeEdit() { 
   popupInputName.value = profileName.textContent;
   popupInputJob.value = profileJob.textContent;
   openPopup(popupTypeEdit);
+  validatedEditForm.checkValidation();
 };
 
+//обработчик отправки формы профиля
 function formSubmitHandlerEdit(evt) {
   evt.preventDefault();
   profileName.textContent = popupInputName.value;
@@ -76,10 +81,11 @@ function closePopup(popup) {
 
 //открыть карточку с фото
 function handlePreviewImage(link, name) {
-    popupImgPhoto.src = link;
-    popupImgPhoto.alt = name;
-    popupImgTitle.textContent = name;
-    openPopup(popupTypeImage);
+  popupImgPhoto.src = link;
+  popupImgPhoto.alt = name;
+  popupImgTitle.textContent = name;
+  openPopup(popupTypeImage);
+  validatedAddForm.checkValidation();
 };
 
 initialCards.forEach((item) => {
@@ -99,6 +105,7 @@ function createCard(data) {
   return newCreateCard;
 }
 
+//обработчик отправки формы карточки
 function formSubmitHandlerAdd(evt) {
   evt.preventDefault();
   addCartInList({ name: popupInputPlaceAdd.value, link: popupInputLinkAdd.value }, handlePreviewImage, '.card-item-template');
@@ -118,5 +125,21 @@ closeImageModalButton.addEventListener('click', () => closePopup(popupTypeImage)
 popupTypeEdit.addEventListener('submit', formSubmitHandlerEdit);
 popupTypeAdd.addEventListener('submit', formSubmitHandlerAdd);
 
-validateForm(popupTypeEdit);
-validateForm(popupTypeAdd);
+const formObj = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_disabled',
+  inputErrorClass: 'popup__input_error',
+  errorClass: 'popup__form-error_visible'
+}
+
+function validateForm(formElement) {
+  const validatedForm = new FormValidator(formObj, formElement);
+  validatedForm.enableValidation();
+}  
+
+const validatedEditForm = validateForm(popupTypeEdit);
+const validatedAddForm = validateForm(popupTypeAdd);
+
+
