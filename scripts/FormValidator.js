@@ -52,12 +52,12 @@ export class FormValidator {
 
   //проверяем валидацию инпутов
   _checkInputValidity(inputElement) {
-    const isInputNotValid = inputElement.validity.valid;
+    const isInputNotValid = !inputElement.validity.valid;
 
       if (isInputNotValid) {
-        this._hideInputError(inputElement, inputElement.validationMessage);
-      } else {
         this._showInputError(inputElement);
+      } else {
+        this._hideInputError(inputElement, inputElement.validationMessage);
     }
   };
   
@@ -65,9 +65,9 @@ export class FormValidator {
   checkFormValidity() {
     this._inputList.forEach(inputElement => {
       if (inputElement.value !== '') {
-        this._checkInputValidity(inputElement);
-      } else {
         this._hideInputError(inputElement);
+      } else {
+        this._checkInputValidity(inputElement);
       }
     this._toggleButtonState();
     });
