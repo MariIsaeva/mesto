@@ -62,7 +62,7 @@ export class FormValidator {
   };
   
   //проверяем валидацию форм
-  _checkFormValidity() {
+  checkFormValidity() {
     this._inputList.forEach(inputElement => {
       if (inputElement.value !== '') {
         this._checkInputValidity(inputElement);
@@ -90,12 +90,4 @@ export class FormValidator {
     this._formElement.addEventListener('submit', evt => evt.preventDefault()); ;  
     this._setEventListeners();
     }
-}
-
-
-
-
-
-
-
-        
+}    

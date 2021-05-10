@@ -84,8 +84,8 @@ function closePopup(popup) {
 function openPopupTypeEdit() { 
   popupInputName.value = profileName.textContent;
   popupInputJob.value = profileJob.textContent;
-  openPopup(popupTypeEdit);
   popupTypeEditValidator.checkFormValidity();
+  openPopup(popupTypeEdit);
 };
 
 //открыть карточку с фото
@@ -137,8 +137,8 @@ popupTypeAdd.addEventListener('submit', formSubmitHandlerAdd);
 function validateForm(formElement) {
   const validatorForm = new FormValidator(formObj, formElement);
   validatorForm.enableValidation();
+  return validatorForm;
 }  
 
 const popupTypeEditValidator = validateForm(popupTypeEdit);
 const popupTypeAddValidator = validateForm(popupTypeAdd);
-
