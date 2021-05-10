@@ -41,7 +41,7 @@ const popups = Array.from(document.querySelectorAll('.popup'));
 
 const cardItemlist = document.querySelector('.card__list');
 
-//закрытие попапа по нажатию Esc
+//закрытие попапа по нажатию на пустое место
 function closeOverlayPopups (popups) {
   popups.forEach(popup => {
     popup.addEventListener('click', function (evt) {
@@ -52,7 +52,7 @@ function closeOverlayPopups (popups) {
   }); 
 }
 
-//закрытие попапа по нажатию на пустое место
+//закрытие попапа по нажатию Esc
 function closePopupEsc(evt) {
   if(evt.key === 'Escape') {
     const popup = document.querySelector('.popup_opened');
@@ -80,7 +80,7 @@ function closePopup(popup) {
   document.removeEventListener('keydown', closePopupEsc);
 }
 
- //открытие попапа с редактированием профиля
+ //открыть попап с редактированием профиля
 function openPopupTypeEdit() { 
   popupInputName.value = profileName.textContent;
   popupInputJob.value = profileJob.textContent;
@@ -88,12 +88,18 @@ function openPopupTypeEdit() {
   openPopup(popupTypeEdit);
 };
 
+// //открыть попап с редактированием карточки
+function openPopupTypeAdd() {
+  popupAddForm.reset()
+  popupTypeAddValidator.checkFormValidity();
+  openPopup(popupTypeAdd);
+}
+
 //открыть карточку с фото
 function handlePreviewImage(link, name) {
   popupImgPhoto.src = link;
   popupImgPhoto.alt = name;
   popupImgTitle.textContent = name;
-  popupTypeAddValidator.checkFormValidity();
   openPopup(popupTypeImage);
   };
 
@@ -125,7 +131,7 @@ function formSubmitHandlerAdd(evt) {
 closeOverlayPopups(popups);
 
 profileEditBtn.addEventListener('click', openPopupTypeEdit);
-profileAddBtn.addEventListener('click', () => openPopup(popupTypeAdd)); 
+profileAddBtn.addEventListener('click', openPopupTypeAdd); 
 
 closeEditModalButton.addEventListener('click', () => closePopup(popupTypeEdit));
 closeAddModalButton.addEventListener('click', () => closePopup(popupTypeAdd));
@@ -134,10 +140,12 @@ closeImageModalButton.addEventListener('click', () => closePopup(popupTypeImage)
 popupTypeEdit.addEventListener('submit', formSubmitHandlerEdit);
 popupTypeAdd.addEventListener('submit', formSubmitHandlerAdd);
 
+
+
 function validateForm(formElement) {
-  const validatorForm = new FormValidator(formObj, formElement);
-  validatorForm.enableValidation();
-  return validatorForm;
+   const validatorForm = new FormValidator(formObj, formElement);
+   validatorForm.enableValidation();
+   return validatorForm;
 }  
 
 const popupTypeEditValidator = validateForm(popupTypeEdit);
