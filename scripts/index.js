@@ -2,6 +2,15 @@ import {initialCards} from './initial-сards.js';
 import {FormValidator} from './FormValidator.js';
 import {Card} from './Card.js';
 
+const formObj = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_disabled',
+  inputErrorClass: 'popup__input_error',
+  errorClass: 'popup__form-error_visible'
+}
+
 const popup = document.querySelector('.popup');
 const popupTypeEdit = document.querySelector('.popup_type_edit');
 const popupTypeAdd = document.querySelector('.popup_type_add');
@@ -51,14 +60,6 @@ function closePopupEsc(evt) {
   }
 }
 
-//открытие попапа с редактированием профиля
-function openPopupTypeEdit() { 
-  popupInputName.value = profileName.textContent;
-  popupInputJob.value = profileJob.textContent;
-  openPopup(popupTypeEdit);
-  validatedEditForm.checkValidation();
-};
-
 //обработчик отправки формы профиля
 function formSubmitHandlerEdit(evt) {
   evt.preventDefault();
@@ -77,16 +78,24 @@ function formSubmitHandlerEdit(evt) {
 function closePopup(popup) { 
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupEsc);
- }
+}
+
+ //открытие попапа с редактированием профиля
+function openPopupTypeEdit() { 
+  popupInputName.value = profileName.textContent;
+  popupInputJob.value = profileJob.textContent;
+  openPopup(popupTypeEdit);
+  popupTypeEditValidator.checkFormValidity();
+};
 
 //открыть карточку с фото
 function handlePreviewImage(link, name) {
   popupImgPhoto.src = link;
   popupImgPhoto.alt = name;
   popupImgTitle.textContent = name;
+  popupTypeAddValidator.checkFormValidity();
   openPopup(popupTypeImage);
-  validatedAddForm.checkValidation();
-};
+  };
 
 initialCards.forEach((item) => {
   addCartInList(item);
@@ -125,21 +134,11 @@ closeImageModalButton.addEventListener('click', () => closePopup(popupTypeImage)
 popupTypeEdit.addEventListener('submit', formSubmitHandlerEdit);
 popupTypeAdd.addEventListener('submit', formSubmitHandlerAdd);
 
-const formObj = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit-button',
-  inactiveButtonClass: 'popup__submit-button_disabled',
-  inputErrorClass: 'popup__input_error',
-  errorClass: 'popup__form-error_visible'
-}
-
 function validateForm(formElement) {
-  const validatedForm = new FormValidator(formObj, formElement);
-  validatedForm.enableValidation();
+  const validatorForm = new FormValidator(formObj, formElement);
+  validatorForm.enableValidation();
 }  
 
-const validatedEditForm = validateForm(popupTypeEdit);
-const validatedAddForm = validateForm(popupTypeAdd);
-
+const popupTypeEditValidator = validateForm(popupTypeEdit);
+const popupTypeAddValidator = validateForm(popupTypeAdd);
 
