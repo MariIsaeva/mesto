@@ -52,12 +52,12 @@ export class FormValidator {
 
   //проверяем валидацию инпутов
   _checkInputValidity(inputElement) {
-    const isInputNotValid = !inputElement.validity.valid;
+    const isInputNotValid = inputElement.validity.valid;
 
       if (isInputNotValid) {
-        this._showInputError(inputElement);
+        this._hideInputError(inputElement, inputElement.validationMessage);
       } else {
-    this._hideInputError(inputElement, inputElement.validationMessage);
+        this._showInputError(inputElement);
     }
   };
   
