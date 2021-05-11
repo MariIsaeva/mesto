@@ -61,16 +61,12 @@ export class FormValidator {
     }
   };
   
-  //проверяем валидацию форм
-  checkFormValidity() {
+  //очищение ошибки, сброс валидации
+  resetValidation() {
     this._inputList.forEach(inputElement => {
-      if (inputElement.value !== '') {
-        this._hideInputError(inputElement);
-      } else {
-        this._checkInputValidity(inputElement);
-      }
-    this._toggleButtonState();
+      this._hideInputError(inputElement);
     });
+    this._toggleButtonState();
   }
  
   // функция которая навешивает события на саму форму и запрещает отправку формы по умолчанию

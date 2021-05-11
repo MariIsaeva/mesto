@@ -84,14 +84,14 @@ function closePopup(popup) {
 function openPopupTypeEdit() { 
   popupInputName.value = profileName.textContent;
   popupInputJob.value = profileJob.textContent;
-  popupTypeEditValidator.checkFormValidity();
+  popupTypeEditValidator.resetValidation();
   openPopup(popupTypeEdit);
 };
 
 // //открыть попап с редактированием карточки
 function openPopupTypeAdd() {
   popupAddForm.reset()
-  popupTypeAddValidator.checkFormValidity();
+  popupTypeAddValidator.resetValidation();
   openPopup(popupTypeAdd);
 }
 
