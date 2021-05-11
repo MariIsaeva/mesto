@@ -69,7 +69,7 @@ export class FormValidator {
     this._toggleButtonState();
   }
  
-  // функция которая навешивает события на саму форму и запрещает отправку формы по умолчанию
+  // функция навешивает события на саму форму и запрещает отправку формы по умолчанию
   _setEventListeners() {
     this._inputList.forEach(inputElement => {
       const handleInput = () => {
