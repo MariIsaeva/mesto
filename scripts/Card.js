@@ -1,10 +1,11 @@
 // 1. класс Card, который создаёт карточку с текстом и ссылкой на изображение
 export class Card {
-    constructor(data, templateSelector, handlePreviewImage) {
+    constructor(data, templateSelector, handlePreviewImage, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
         this._templateSelector = templateSelector;
-        this._handlePreviewImage = handlePreviewImage
+        this._handlePreviewImage = handlePreviewImage;
+        this._handleCardClick = handleCardClick
     }
     
     //удаление карточки
